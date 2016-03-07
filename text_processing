@@ -8,7 +8,7 @@ data = pd.read_csv("/Users/joshuarosenberg/Dropbox/research/cluster-compare-text
 def process_strings(data):
     data = data.str.lower() # makes text lowercase
     data = data = re.sub(" \d+", " ", data) # removes numbers
-    data = data.strip() # strips whitespace
+    data = data.strip() # strips whitespace - why are we stripping white space?
     return data
 
 processed_data = process_strings(data.purpose)
