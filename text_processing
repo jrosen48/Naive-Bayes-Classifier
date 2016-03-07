@@ -6,7 +6,9 @@ data = pd.read_csv("/Users/joshuarosenberg/Dropbox/research/cluster-compare-text
 # use data["purpose"], data["criteria"], data["generality"], data["audience1"], data["audience2"], and data["evidence"]
 
 def process_strings(data):
-    data = data.str.lower()
+    data = data.str.lower() # makes text lowercase
+    data = data = re.sub(" \d+", " ", data) # removes numbers
+    data = data.strip() # strips whitespace
     return data
 
 processed_data = process_strings(data.purpose)
