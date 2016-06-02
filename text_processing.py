@@ -1,14 +1,25 @@
 import pandas as pd
 import re
 
-data = pd.read_csv("/Users/joshuarosenberg/Dropbox/research/cluster-compare-text/csv/scip_data.csv")
+data = pd.read_csv("./scip_data.csv") # make path relative so we can use it
+# ^^^ pandas is annoying AF
+
+#for string in data.purpose:
+#    print string
 
 # use data["purpose"], data["criteria"], data["generality"], data["audience1"], data["audience2"], and data["evidence"]
 
 def process_strings(data):
-    data = data.str.lower() # makes text lowercase
-    data = data = re.sub(" \d+", " ", data) # removes numbers
-    data = data.strip() # strips whitespace
-    return data
+    global entry
+    outlist = []
+    for entry in data:
+        entry = str(entry).lower() # makes text lowercase
+        entry = re.sub('[0-9]+','', entry) # removes numbers
+        entry = entry.strip() # strips whitespace
+        outlist.append(entry)
+    return outlist
+    
+processed_data = process_strings(data.purpose.values) # using lists instead of pandas HOLLA
 
-processed_data = process_strings(data.purpose)
+print 'example from processed_data',processed_data[0]
+
